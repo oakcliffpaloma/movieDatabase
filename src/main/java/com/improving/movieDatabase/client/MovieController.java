@@ -1,25 +1,31 @@
 package com.improving.movieDatabase.client;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping
 public class MovieController {
 
-        private final MovieRepository movieRepository ;
+    @Autowired
+    private MovieRepository movieRepository;
+
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<Movie> getAllMovies() {
+        return movieRepository.findAll();
+    }
+
+//        private final MovieRepository movieRepository ;
 
 //        public MovieController() { }
 
-        public MovieController(MovieRepository movieRepository) {
-            this.movieRepository = new MovieRepository();
-        }
+//        public MovieController(MovieRepository movieRepository) {
+//            this.movieRepository = new MovieRepository();
+//        }
 
-        @GetMapping("/movies")
-        public List<Movie> movies() {
-            return movieRepository.getMovies();
-        }
+//        @GetMapping(path="/all")
+//        public @ResponseBody List<Movie> movies() {
+//            return movieRepositoryInterface.getMovies();
+//        }
     }
