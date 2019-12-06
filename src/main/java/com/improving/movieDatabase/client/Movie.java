@@ -11,7 +11,8 @@ public class Movie {
     private String name;
     private String director;
     private String genre;
-    private int ReleaseYr;
+    private int releaseYr;
+
 
     public Movie(){}
 
@@ -37,7 +38,7 @@ public class Movie {
     }
 
     public int getReleaseYr() {
-        return ReleaseYr;
+        return releaseYr;
     }
 
     public Integer getId() {
@@ -61,7 +62,7 @@ public class Movie {
     }
 
     public void setReleaseYr(int releaseYr) {
-        this.ReleaseYr = releaseYr;
+        this.releaseYr = releaseYr;
     }
 }
 
