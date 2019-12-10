@@ -1,11 +1,16 @@
 package com.improving.movieDatabase.client;
 
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
 
 @Repository
 public interface MovieRepository extends CrudRepository<Movie, Integer> {
+
+//    List<Movie> findById(Integer id);
+
 
     //private final List<Movie> movies = new ArrayList<>();
 
@@ -23,8 +28,5 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
 //
 //    }
 
-//    public List<Movie> findAll() {
-//        return Collections.unmodifiableList(movies);
-//    }
 
 }
