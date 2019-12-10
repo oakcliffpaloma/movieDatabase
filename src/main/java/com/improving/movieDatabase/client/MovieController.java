@@ -1,8 +1,12 @@
 package com.improving.movieDatabase.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.persistence.GeneratedValue;
+import java.net.URI;
 
 
 @RestController
@@ -20,6 +24,16 @@ public class MovieController {
     @GetMapping("/movie/{id}")
     public Movie findById(@PathVariable Integer id) {
         return movieRepository.findById(id).get();
+    }
+    @PostMapping("/movies")
+    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie){
+        Movie savedMovie = movieRepository.save(movie);
+
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/movies")
+                .buildAndExpand(savedMovie.getId()).toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
 
