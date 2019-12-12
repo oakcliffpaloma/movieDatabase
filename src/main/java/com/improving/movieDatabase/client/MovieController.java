@@ -21,7 +21,7 @@ public class MovieController {
     public @ResponseBody Iterable<Movie> getAllMovies() {
         return movieRepository.findAll();
     }
-    @GetMapping("/movie/{id}")
+    @GetMapping("/movies/{id}")
     public Movie findById(@PathVariable Integer id) {
         return movieRepository.findById(id).get();
     }
@@ -31,6 +31,16 @@ public class MovieController {
 
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/movies")
+                .buildAndExpand(savedMovie.getId()).toUri();
+
+        return ResponseEntity.created(location).build();
+    }
+    @PutMapping("/movies/{id}")
+    public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie){
+        Movie savedMovie = movieRepository.save(movie);
+
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(savedMovie.getId()).toUri();
 
         return ResponseEntity.created(location).build();
